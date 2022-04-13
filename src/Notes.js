@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Header from "./components/Header/Header";
 import AsideMenu from "./components/AsideMenu/AsideMenu";
 import NoteContent from "./components/NoteContent/NoteContent";
+import classes from "./assets/styles/Notes.module.css";
 
 function Notes() {
     const [notes, setNotes] = useState(getNotesFromLS());
@@ -27,11 +28,11 @@ function Notes() {
     }
 
     return (
-    <div className="notes">
+    <div className={classes.notes}>
         <Header/>
-        <div className="notes__wrapper">
+        <div className={classes.notes__wrapper}>
             <AsideMenu onNoteClick={openNote} onNotesUpdate={setNotesToLS} notes={notes} currentNote={currentNote.id}/>
-            <main className="notes__main">
+            <main className={classes.notes__main}>
                 <NoteContent noteToShow={currentNote}/>
             </main>
         </div>

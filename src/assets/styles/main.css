@@ -1,5 +1,5 @@
 @import 'destyle.css';
 @import 'base.css';
-@import 'Notes.css';
+@import 'Notes.module.css';
 @import 'Icon.css';
 @import 'Button.css';
