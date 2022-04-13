@@ -13,11 +13,19 @@
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
-
+.deleteNote {
+    width: 30px;
+    height: 30px;
+    transition: color .24s ease-in-out;
+}
 
 @media (pointer: fine) and (hover: hover) {
     .fab:hover {
         opacity: .9;
         box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
+    }
+
+    .deleteNote:hover {
+        color: #f52a37;
     }
 }

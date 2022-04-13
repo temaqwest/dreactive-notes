@@ -25,6 +25,16 @@
     animation: 1s fadeAndRotate;
     perspective: 250px;
     will-change: contents;
+    position: relative;
+    overflow: hidden;
+}
+
+.deleteNoteBtn {
+    transition: all .24s ease-in-out;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    transform: translateX(40px);
 }
 
 .menu__itemContainer {
@@ -49,6 +59,11 @@
     .menu__item:hover {
         background-color: #dedede;
         transform: scale(.98);
+    }
+
+    .menu__item:hover .deleteNoteBtn {
+        transform: translateX(0);
+        pointer-events: auto;
     }
 
     .active:hover {

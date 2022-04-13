@@ -4,9 +4,34 @@
     color: #000000;
 }
 
+.note__contentEditable {
+    position: relative;
+    font-size: 14px;
+    line-height: 140%;
+}
+
+.contentTitle {
+    font-size: 30px;
+    line-height: 160%;
+}
+
+.contentDatetime {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #888888;
+    font-weight: 400;
+}
+
+.contentParagraph {
+    font-size: 15px;
+}
+
 .notFound {
     position: absolute;
-    display: inline-flex;
+    display: flex;
+    flex-flow: column nowrap;
+    row-gap: 20px;
     align-items: center;
     column-gap: 10px;
     top: 50%;
@@ -17,7 +42,12 @@
     animation: 1s fade;
 }
 
-.notFound__title {
+.animatedCursor {
+    width: 100px;
+    height: 100px;
+}
+
+.notFoundTitle {
     font-size: 25px;
 }
 

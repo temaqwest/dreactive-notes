@@ -2,4 +2,31 @@
     width: 100%;
     min-height: 28px;
     background: #EDEDED;
+    padding: 0 25px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logoBlock {
+    display: inline-flex;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.logoBlock > * {
+    user-select: none;
+    pointer-events: none;
+}
+
+.logo {
+
+}
+
+.logoTitle {
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: .04em;
+    line-height: 100%;
 }

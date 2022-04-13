@@ -1,7 +1,10 @@
 import React from 'react';
 import classes from "./AsideMenu.module.css";
+import Button from "../UI/Button/Button";
+import Icon from "../UI/Icon/Icon";
 
-const AsideMenuItem = ({title, content, date, id, isClicked, active}) => {
+const AsideMenuItem = ({title, content, date, id, isClicked, isDeleted, active}) => {
+
         return (
             <li onClick={isClicked} className={classes.menu__itemContainer}>
                 <div
@@ -10,7 +13,10 @@ const AsideMenuItem = ({title, content, date, id, isClicked, active}) => {
                         active === id ?
                             `${classes.menu__item} ${classes.active}` :
                             `${classes.menu__item}`
-                    }>
+                }>
+                    <Button onClick={isDeleted} type="button" mode="deleteNote" modifier={classes.deleteNoteBtn}>
+                        <Icon name="deleteNote"/>
+                    </Button>
                     <h2 className={classes.menu__title}> { title } </h2>
                     <span className={classes.menu__contents}> { content } </span>
                     <span className={classes.menu__date}> { date } </span>

@@ -31,7 +31,7 @@ return render();
 
 
 
-const AsideMenu = ({notes, onNotesUpdate, onNoteClick, currentNote, ...props}) => {
+const AsideMenu = ({notes, onNotesUpdate, onNoteClick, onNoteDelete, currentNote, ...props}) => {
         const parentNodes = notes;
 
         function getCurrentDateTime() {
@@ -59,6 +59,7 @@ const AsideMenu = ({notes, onNotesUpdate, onNoteClick, currentNote, ...props}) =
                             return (
                                 <AsideMenuItem
                                     isClicked={onNoteClick}
+                                    isDeleted={onNoteDelete}
                                     key={note.id}
                                     id={note.id}
                                     title={note.title}
@@ -71,7 +72,7 @@ const AsideMenu = ({notes, onNotesUpdate, onNoteClick, currentNote, ...props}) =
                     }
                 </ul>
 
-                <Button onClick={addNewNote} type="fab" modifier={classes.menu__create} title="Создать заметку">
+                <Button onClick={addNewNote} mode="fab" modifier={classes.menu__create} title="Создать заметку">
                     <Icon name='add'/>
                 </Button>
             </aside>

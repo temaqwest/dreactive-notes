@@ -1,11 +1,11 @@
 import React from "react";
 
-const Button = ({ children, modifier, type, ...props }) => {
+const Button = ({ children, modifier, mode, ...props }) => {
 
     function getClassNames() {
         let classes = '';
 
-        switch (type) {
+        switch (mode) {
             case 'fab':
                 classes = 'button fab';
                 break;
@@ -14,6 +14,9 @@ const Button = ({ children, modifier, type, ...props }) => {
                 break;
             case 'tile':
                 classes = 'button tile';
+                break;
+            case 'deleteNote':
+                classes = 'button deleteNote';
                 break;
             default:
                 break;
