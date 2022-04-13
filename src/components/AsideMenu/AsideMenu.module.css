@@ -1,0 +1,122 @@
+
+
+.menu {
+    flex-basis: 408px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-shrink: 0;
+    padding: 25px;
+    background: #F7F7F7;
+    border-right: 2px solid #F2F2F2;
+    font-family: Roboto, sans-serif;
+    position: relative;
+}
+
+.menu__list {}
+
+.menu__item {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 17px 21px 9px;
+    display: flex;
+    flex-flow: column nowrap;
+    transition: .24s ease-in-out;
+    cursor: pointer;
+    animation: 1s fadeAndRotate;
+    perspective: 250px;
+    will-change: contents;
+}
+
+.menu__itemContainer {
+    perspective: 300px;
+    transform-style: preserve-3d;
+    transform-origin: top;
+    margin-bottom: 10px;
+}
+
+.active {
+    color: #FFFFFF;
+    background-color: #FFBB02;
+}
+
+.active .menu__title,
+.active .menu__contents,
+.active .menu__date {
+    color: #FFFFFF;
+}
+
+@media (pointer: fine) and (hover: hover) {
+    .menu__item:hover {
+        background-color: #dedede;
+        transform: scale(.98);
+    }
+
+    .active:hover {
+        background-color: #FFBB02;
+    }
+}
+
+.menu__item > * {
+    user-select: none;
+    pointer-events: none;
+}
+
+.menu__itemContainer:not(:first-child) {
+    margin-top: 10px;
+}
+
+.menu__itemContainer:last-child {
+    margin-bottom: 80px;
+}
+
+.menu__title {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000;
+    margin-bottom: 4px;
+}
+
+.menu__contents {
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 15px;
+    color: #676767;
+    margin-bottom: 10px;
+}
+
+.menu__date {
+    font-weight: 400;
+    font-size: 9px;
+    line-height: 11px;
+    color: #888888;
+}
+
+.menu__create {
+    width: 60px;
+    height: 60px;
+    background-color: #FFBB02;
+    color: #FFFFFF;
+    position: fixed;
+    bottom: 30px;
+    left: 320px;
+    animation: 1s fade;
+}
+
+@keyframes fadeAndRotate {
+    from {
+        opacity: 0;
+        transform: rotateX(-90deg);
+    } to {
+        opacity: 1;
+        transform: rotateX(0deg);
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}

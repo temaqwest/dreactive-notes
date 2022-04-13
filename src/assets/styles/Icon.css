@@ -1,0 +1,15 @@
+.icon {
+  flex: none;
+  width: 24px;
+  height: 24px;
+}
+
+.icon--small {
+  width: 16px;
+  height: 16px;
+}
+
+.icon--medium {
+  width: 32px;
+  height: 32px;
+}

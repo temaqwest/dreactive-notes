@@ -1,0 +1,23 @@
+.notes {
+    background-color: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 0;
+}
+
+.notes .notes__wrapper {
+    display: flex;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.notes .notes__main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 30px;
+    position: relative;
+}

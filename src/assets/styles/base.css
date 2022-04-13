@@ -1,0 +1,16 @@
+html,
+*,
+*::before,
+*::after {
+    font-family: Roboto, sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00000030;
+    border-radius: 10px;
+}

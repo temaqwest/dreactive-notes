@@ -1,0 +1,30 @@
+.note {
+    font-size: 15px;
+    font-weight: 500;
+    color: #000000;
+}
+
+.notFound {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    column-gap: 10px;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    color: rgb(37, 37, 37, 0.4);
+    user-select: none;
+    animation: 1s fade;
+}
+
+.notFound__title {
+    font-size: 25px;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    } to {
+          opacity: 1;
+      }
+}
