@@ -74,6 +74,13 @@
 .menu__item > * {
     user-select: none;
     pointer-events: none;
+    white-space: nowrap;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
 }
 
 .menu__itemContainer:not(:first-child) {

@@ -3,6 +3,7 @@ import classes from "./AsideMenu.module.css";
 import AsideMenuItem from "./AsideMenuItem";
 import Button from "../UI/Button/Button";
 import Icon from "../UI/Icon/Icon";
+import { getRandomName, getCurrentDateTime } from '../../Utils/generateRandomData';
 
 /*
 Ты думаешь что не можешь ничего бросить и изменить потому,
@@ -16,39 +17,18 @@ import Icon from "../UI/Icon/Icon";
 Жизнь видимо из этого и состоит ¯\_(ツ)_/¯
 */
 
-/*
-To any component
-...
-...
-function render() {
-    ...if
-    ...do
-    ...smth or not
-    return (...)
-}
-return render();
-*/
-
-
-
 const AsideMenu = ({notes, onNotesUpdate, onNoteClick, onNoteDelete, currentNote, ...props}) => {
         const parentNodes = notes;
 
-        function getCurrentDateTime() {
-            return `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`;
-        }
-
         function addNewNote() {
-            const notesLen = parentNodes.length;
-
             const newObj = {
-                id: (notesLen + 1),
-                title: 'Untitled' + (notesLen + 1),
-                content: 'Text content',
+                id: Date.now(),
+                title: getRandomName(2),
+                content: getRandomName(5),
                 date: getCurrentDateTime(),
             };
 
-            return onNotesUpdate(newObj)
+            return onNotesUpdate(newObj, true)
         }
 
         return (
