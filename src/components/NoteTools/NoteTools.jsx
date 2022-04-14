@@ -3,7 +3,7 @@ import classes from './NoteTools.module.css';
 import Button from "../UI/Button/Button";
 import Icon from "../UI/Icon/Icon";
 
-const NoteTools = () => {
+const NoteTools = ({onAction}) => {
     const [tools] = useState([
         { id: 1, name: 'H1', description: 'Заголовок первого уровня' },
         { id: 2, name: 'H2', description: 'Заголовок второго уровня' },
@@ -21,7 +21,7 @@ const NoteTools = () => {
                         <Button
                             type="button"
                             key={tool.id}
-                            onClick={(e) => e.stopPropagation()}
+                            onClick={onAction.bind(tool.name.toLowerCase())}
                             title={tool.description}
                             data-name={tool.name}
                             modifier={classes.note__tool}
