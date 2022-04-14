@@ -3,7 +3,6 @@ import Header from "./components/Header/Header";
 import AsideMenu from "./components/AsideMenu/AsideMenu";
 import NoteContent from "./components/NoteContent/NoteContent";
 import classes from "./assets/styles/Notes.module.css";
-import NoteTools from "./components/NoteTools/NoteTools";
 
 function Notes() {
     const [notes, setNotes] = useState(getNotesFromLS());
@@ -13,9 +12,15 @@ function Notes() {
         return JSON.parse(localStorage.getItem('notes')) ?? [];
     }
 
-    function changeNotesList(note) {
-        const updateNotes = getNotesFromLS();
-        updateNotes.push(note);
+    function changeNotesList(note, flag) {
+        let updateNotes = getNotesFromLS();
+
+        if (!flag) {
+            updateNotes = updateNotes.filter((upNote) => upNote.id !== note.id);
+            setCurrentNote({});
+        } else {
+            updateNotes.push(note);
+        }
 
         setNotes([...updateNotes])
         return localStorage.setItem('notes', JSON.stringify(updateNotes));
@@ -24,18 +29,28 @@ function Notes() {
     function openNote(e) {
         const clickedItemID = Number(e.target.getAttribute('data-id'));
         const note = notes.find(i => i.id === clickedItemID);
-
         setCurrentNote(note);
     }
 
     function deleteNote(e) {
         e.stopPropagation();
-        e.preventDefault();
         const clickedItemID = Number(e.target.parentElement.getAttribute('data-id'));
-        console.log(clickedItemID);
+        changeNotesList({ id: clickedItemID}, false);
     }
 
-    console.log(currentNote)
+    function changeNote(e) {
+        const currentNoteID = e.target.parentElement.getAttribute('data-id');
+        const currentNote = notes.find((note) => note.id === +currentNoteID);
+        const changeType = e.target.getAttribute('name');
+
+        changeType === 'title' ?
+            currentNote.title = e.target.value :
+            currentNote.content = e.target.value;
+
+        setNotes(notes.map((note) => {
+            return note.id === currentNoteID ? currentNote : note;
+        }));
+    }
 
     return (
     <div className={classes.notes}>
@@ -49,8 +64,7 @@ function Notes() {
                 currentNote={currentNote.id}
             />
             <main className={classes.notes__main}>
-                { Object.keys(currentNote).length ? <NoteTools/> : '' }
-                <NoteContent noteToShow={currentNote}/>
+                <NoteContent noteToShow={currentNote} contentChange={changeNote}/>
             </main>
         </div>
     </div>
