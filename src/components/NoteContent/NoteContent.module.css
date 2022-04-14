@@ -8,11 +8,15 @@
     position: relative;
     font-size: 14px;
     line-height: 140%;
+    display: flex;
+    flex-flow: column nowrap;
 }
 
 .contentTitle {
     font-size: 30px;
     line-height: 160%;
+    outline: none;
+    border: none;
 }
 
 .contentDatetime {
@@ -25,6 +29,11 @@
 
 .contentParagraph {
     font-size: 15px;
+    overflow: auto;
+    resize: none;
+    width: 100%;
+    outline: none;
+    background-color: transparent;
 }
 
 .notFound {
