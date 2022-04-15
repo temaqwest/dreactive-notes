@@ -5,7 +5,7 @@ const url = require('url');
 let mainWindow;
 
 const createWindow = () => {
-    mainWindow = new BrowserWindow({ width: 1280, height: 850, show: false, resizable: false });
+    mainWindow = new BrowserWindow({ width: 1280, height: 850, show: false, resizable: false, icon: '../build/favicon.ico' });
     mainWindow.loadURL(
         !app.isPackaged
             ? process.env.ELECTRON_START_URL

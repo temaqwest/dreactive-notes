@@ -2,7 +2,7 @@
 
 .menu {
     flex-basis: 408px;
-    overflow-y: hidden;
+    overflow-y: auto;
     overflow-x: hidden;
     flex-shrink: 0;
     padding: 25px;
