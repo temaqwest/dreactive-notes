@@ -1,6 +1,16 @@
 import React from "react";
+import Icon from "../Icon/Icon";
 
-const Button = ({ children, modifier, mode, ...props }) => {
+const Button = ({ children, modifier, mode, icon, iconModifier, ...props }) => {
+
+    function insertIcon() {
+        return (
+          <div className="button__content">
+              <span className="button__text">{children}</span>
+              <Icon name={icon} modifier={iconModifier}/>
+          </div>
+        );
+    }
 
     function getClassNames() {
         let classes = '';
@@ -27,7 +37,9 @@ const Button = ({ children, modifier, mode, ...props }) => {
 
     return (
         <button {...props} className={getClassNames()}>
-            { children }
+            {
+                icon ? insertIcon() : children
+            }
         </button>
     )
 }

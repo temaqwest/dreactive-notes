@@ -18,7 +18,7 @@ import { getRandomName, getCurrentDateTime } from '../../Utils/generateRandomDat
 */
 
 const AsideMenu = ({notes, onNotesUpdate, onNoteClick, onNoteDelete, currentNote, ...props}) => {
-        const parentNodes = notes;
+        const parentNodes = notes ?? [];
 
         function addNewNote() {
             const newObj = {

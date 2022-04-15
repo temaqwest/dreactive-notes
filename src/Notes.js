@@ -8,7 +8,12 @@ import OnBoarding from "./components/OnBoarding/OnBoarding";
 function Notes() {
     const [notes, setNotes] = useState(getDataFromLS('notes'));
     const [currentNote, setCurrentNote] = useState({});
+    const [onBoardingStatus, setOnBoardingStatus] = useState(false);
 
+    function checkOnBoardingStatus(status) {
+        setOnBoardingStatus(status);
+        return status;
+    }
 
     function setDataToLS(key, data) {
         localStorage.setItem(key, JSON.stringify(data));
@@ -64,7 +69,7 @@ function Notes() {
 
     return (
         <div className={classes.notes}>
-            {notes ? <OnBoarding/> : ''}
+            {getDataFromLS('onBoarding') || onBoardingStatus ? '' : <OnBoarding status={checkOnBoardingStatus}/>}
             <Header/>
             <div className={classes.notes__wrapper}>
                 <AsideMenu
