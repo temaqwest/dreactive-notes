@@ -1,0 +1,30 @@
+.toast {
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #FFFFFF;
+    border-radius: 12px;
+    padding: 10px 40px;
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    background: #FFBB02;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 -2px 6px rgb(0 0 0 / 24%);
+    transition: .24s ease-in-out;
+}
+
+.active {
+    bottom: 20px;
+}
+
+.toast__title {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 100%;
+}
+
+.success_icon {
+    width: 40px;
+    height: 40px;
+}

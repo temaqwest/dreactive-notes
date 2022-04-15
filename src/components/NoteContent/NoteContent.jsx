@@ -1,7 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classes from "./NoteContent.module.css";
+import Toast from "../UI/Toast/Toast";
 
-const NoteContent = ({noteToShow, contentChange}) => {
+const NoteContent = ({noteToShow, contentChange, onContentSave}) => {
+    const [control, setControl] = useState(false);
+    const [onSave, setOnSave] = useState(false);
+
     const notFound = (
         <div className={classes.notFound}>
             <svg className={classes.animatedCursor} id="animatedCursor" viewBox="0 0 194 194" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,10 +46,6 @@ const NoteContent = ({noteToShow, contentChange}) => {
         </div>
     );
 
-    function expandableTextArea(el) {
-        el.target.style.height = el.target.scrollHeight + 'px';
-    }
-
     const textContent = (
         <div className={classes.note__contentEditable} data-id={noteToShow.id}>
             <span className={classes.contentDatetime}>{noteToShow.date} </span>
@@ -56,9 +56,12 @@ const NoteContent = ({noteToShow, contentChange}) => {
                 onChange={contentChange}
                 value={noteToShow.title}
                 maxLength="82"
+                minLength="1"
+                placeholder="Title"
             />
             <textarea
                 name="paragraph"
+                placeholder="Text content"
                 className={classes.contentParagraph}
                 onChange={
                     (el) => {
@@ -71,15 +74,41 @@ const NoteContent = ({noteToShow, contentChange}) => {
         </div>
     );
 
+    const expandableTextArea = (el) => {
+        el.target.style.height = el.target.scrollHeight + 'px';
+    };
+
     function isEmpty() {
         return Object.keys(noteToShow).length === 0;
     }
 
+    function handleSaveShortcut(e) {
+        if (e.keyCode === 17) setControl(true);
+
+        if (e.keyCode === 83 && control) {
+            e.preventDefault();
+
+            setOnSave(true);
+            onContentSave();
+            setTimeout(() => setOnSave(false), 3000);
+        }
+    }
+
+    function checkCtrl(e) {
+        if (e.keyCode === 17)
+            setControl(false);
+    }
+
     return (
-        <div className={classes.note}>
+        <div
+            className={classes.note}
+            onKeyDown={handleSaveShortcut}
+            onKeyUp={checkCtrl}
+        >
             {
                 isEmpty() ? notFound : textContent
             }
+            <Toast message="Ваша заметка сохранена!" active={onSave}/>
         </div>
     );
 }

@@ -3,17 +3,23 @@ import Header from "./components/Header/Header";
 import AsideMenu from "./components/AsideMenu/AsideMenu";
 import NoteContent from "./components/NoteContent/NoteContent";
 import classes from "./assets/styles/Notes.module.css";
+import OnBoarding from "./components/OnBoarding/OnBoarding";
 
 function Notes() {
-    const [notes, setNotes] = useState(getNotesFromLS());
+    const [notes, setNotes] = useState(getDataFromLS('notes'));
     const [currentNote, setCurrentNote] = useState({});
 
-    function getNotesFromLS() {
-        return JSON.parse(localStorage.getItem('notes')) ?? [];
+
+    function setDataToLS(key, data) {
+        localStorage.setItem(key, JSON.stringify(data));
+    }
+
+    function getDataFromLS(key) {
+        return JSON.parse(localStorage.getItem(key));
     }
 
     function changeNotesList(note, flag) {
-        let updateNotes = getNotesFromLS();
+        let updateNotes = getDataFromLS("notes") ?? [];
 
         if (!flag) {
             updateNotes = updateNotes.filter((upNote) => upNote.id !== note.id);
@@ -24,6 +30,10 @@ function Notes() {
 
         setNotes([...updateNotes])
         return localStorage.setItem('notes', JSON.stringify(updateNotes));
+    }
+
+    function saveChanges() {
+        setDataToLS('notes', notes);
     }
 
     function openNote(e) {
@@ -53,21 +63,22 @@ function Notes() {
     }
 
     return (
-    <div className={classes.notes}>
-        <Header/>
-        <div className={classes.notes__wrapper}>
-            <AsideMenu
-                onNoteClick={openNote}
-                onNotesUpdate={changeNotesList}
-                onNoteDelete={deleteNote}
-                notes={notes}
-                currentNote={currentNote.id}
-            />
-            <main className={classes.notes__main}>
-                <NoteContent noteToShow={currentNote} contentChange={changeNote}/>
-            </main>
+        <div className={classes.notes}>
+            {notes ? <OnBoarding/> : ''}
+            <Header/>
+            <div className={classes.notes__wrapper}>
+                <AsideMenu
+                    onNoteClick={openNote}
+                    onNotesUpdate={changeNotesList}
+                    onNoteDelete={deleteNote}
+                    notes={notes}
+                    currentNote={currentNote.id}
+                />
+                <main className={classes.notes__main}>
+                    <NoteContent noteToShow={currentNote} contentChange={changeNote} onContentSave={saveChanges}/>
+                </main>
+            </div>
         </div>
-    </div>
     );
 }
 
