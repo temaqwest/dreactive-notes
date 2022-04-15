@@ -18,7 +18,7 @@ const OnBoarding = ({status, ...props}) => {
         status(true);
     }
 
-    const [onBoardingItems, setOnBoardingItems] = useState([
+    const [onBoardingItems] = useState([
         {
             id: 1,
             image: onBoarding1,
