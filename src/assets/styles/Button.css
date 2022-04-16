@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     transition: .24s ease;
+    outline: none;
 }
 
 .button .button__content {
