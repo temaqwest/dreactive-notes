@@ -34,6 +34,11 @@
     width: 100%;
     outline: none;
     background-color: transparent;
+    height: calc(100vh - 146px);
+}
+
+.contentParagraph::-webkit-scrollbar {
+    display: none;
 }
 
 .notFound {

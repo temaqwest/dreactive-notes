@@ -78,6 +78,20 @@ const NoteContent = ({noteToShow, contentChange, onContentSave}) => {
         el.target.style.height = el.target.scrollHeight + 'px';
     };
 
+    function addTabulation(e) {
+        let start = e.target.selectionStart;
+        let end = e.target.selectionEnd;
+        let value = e.target.value;
+
+        if (e.keyCode === 9) {
+            e.preventDefault();
+            e.target.value = e.target.value.substring(0, start) + "\t" + e.target.value.substring(end);
+
+            e.target.selectionStart = start + 1;
+            e.target.selectionEnd = start + 1;
+        }
+    }
+
     function isEmpty() {
         return Object.keys(noteToShow).length === 0;
     }
@@ -102,7 +116,10 @@ const NoteContent = ({noteToShow, contentChange, onContentSave}) => {
     return (
         <div
             className={classes.note}
-            onKeyDown={handleSaveShortcut}
+            onKeyDown={(event) => {
+                handleSaveShortcut(event);
+                addTabulation(event);
+            }}
             onKeyUp={checkCtrl}
         >
             {
