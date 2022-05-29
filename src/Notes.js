@@ -4,6 +4,7 @@ import AsideMenu from "./components/AsideMenu/AsideMenu";
 import NoteContent from "./components/NoteContent/NoteContent";
 import classes from "./assets/styles/Notes.module.css";
 import OnBoarding from "./components/OnBoarding/OnBoarding";
+import NoteTools from "./components/NoteTools/NoteTools";
 
 function Notes() {
     const [notes, setNotes] = useState(getDataFromLS('notes'));
@@ -66,6 +67,10 @@ function Notes() {
             return note.id === currentNoteID ? currentNote : note;
         }));
     }
+    
+    function onNoteTools() {
+        console.log(this)
+    }
 
     return (
         <div className={classes.notes}>
@@ -80,6 +85,7 @@ function Notes() {
                     currentNote={currentNote.id}
                 />
                 <main className={classes.notes__main}>
+                    { Object.keys(currentNote).length ? <NoteTools onAction={onNoteTools}/> : '' }
                     <NoteContent noteToShow={currentNote} contentChange={changeNote} onContentSave={saveChanges}/>
                 </main>
             </div>

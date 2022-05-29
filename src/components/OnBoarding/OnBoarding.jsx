@@ -54,7 +54,6 @@ const OnBoarding = ({status, ...props}) => {
             image: onBoarding5,
             title: 'Ваши данные в безопасности',
             description: 'Наше приложение хранит ваши данные исключительно у вас на компьютере и не предоставляет никакого доступа третьим лицам и сторонним сервисам!',
-            lastPost: true,
         },
     ]);
 
@@ -67,7 +66,7 @@ const OnBoarding = ({status, ...props}) => {
             <div ref={sliderWidth} className={classes.slider}>
                 <div className={classes.slider__wrapper} style={{ transform: `translate3d(${-path}px, 0px, 0px)`}}>
                     {
-                        onBoardingItems.map((item) => {
+                        onBoardingItems.map((item, idx, array) => {
                             return (
                                 <div key={item.id} className={classes.onBoarding__wrap}>
                                     <div className={classes.onBoarding}>
@@ -75,8 +74,8 @@ const OnBoarding = ({status, ...props}) => {
                                         <div className={classes.content}>
                                             <h1 className={classes.title}>{item.title}</h1>
                                             <p className={classes.description}>{item.description}</p>
-                                            <Button onClick={item.lastPost ? setOnBoardingChecked : sliderNext} mode="text" modifier={classes.nextBtn} icon={item.lastPost ? "success_onboarding" : "arrow_right"} iconModifier="icon--medium">
-                                                { item.lastPost ? 'Закончить' : 'Далее'}
+                                            <Button onClick={(array.length - 1) === idx ? setOnBoardingChecked : sliderNext} mode="text" modifier={classes.nextBtn} icon={item.lastPost ? "success_onboarding" : "arrow_right"} iconModifier="icon--medium">
+                                                { (array.length - 1) === idx ? 'Закончить' : 'Далее'}
                                             </Button>
                                         </div>
                                     </div>
